@@ -42,6 +42,38 @@ cursor:pointer;
 z-index:10;
 }
 
+/* ARROW BUTTONS */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  font-size: 45px; 
+  padding: 25px 22px; 
+  cursor: pointer;
+  z-index: 100; 
+  border-radius: 12px; 
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+/*mouse*/
+.nav-btn:hover {
+  background: #000000; 
+  border-color: #ffffff; 
+  transform: translateY(-50%) scale(1.05);
+
+/* Positioning left and right*/
+.prev {
+  left: 10px; 
+}
+.next {
+  right: 10px; 
+}
+
+
 .slider{
 display:flex;
 overflow-x:auto;
@@ -545,7 +577,8 @@ A free Netflix for those who can't afford to pay, here we can watch the movies w
 <div id="gallery1" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeGallery('gallery1')">&times;</span>
-
+<button class="nav-btn prev" onclick="moveSlider('gallery1', -1)">&#10094;</button>
+  <button class="nav-btn next" onclick="moveSlider('gallery1', 1)">&#10095;</button>
 <div class="slider">
 <img src="project1-1.png">
 <img src="project1-2.png">
@@ -560,7 +593,8 @@ A free Netflix for those who can't afford to pay, here we can watch the movies w
 <div id="gallery2" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeGallery('gallery2')">&times;</span>
-
+<button class="nav-btn prev" onclick="moveSlider('gallery2', -1)">&#10094;</button>
+  <button class="nav-btn next" onclick="moveSlider('gallery2', 1)">&#10095;</button>
 <div class="slider">
 <img src="project2-1.png">
 <img src="project2-2.png">
@@ -575,7 +609,8 @@ A free Netflix for those who can't afford to pay, here we can watch the movies w
 <div id="gallery3" class="modal">
 <div class="modal-content">
 <span class="close" onclick="closeGallery('gallery3')">&times;</span>
-
+<button class="nav-btn prev" onclick="moveSlider('gallery3', -1)">&#10094;</button>
+  <button class="nav-btn next" onclick="moveSlider('gallery3', 1)">&#10095;</button>>
 <div class="slider">
 <img src="project3-1.png">
 <img src="project3-2.png">
@@ -612,7 +647,17 @@ modal.style.display="none";
 });
 
 }
+function moveSlider(galleryId, direction) {
+  const slider = document.querySelector(`#${galleryId} .slider`);
+  const slideWidth = slider.clientWidth; // Kukunin ang lapad ng isang imahe
+  
+  // Isasave kung gaano kalayo ang isscroll pakaliwa (-1) o pakanan (1)
+  slider.scrollBy({
+    left: slideWidth * direction,
+    behavior: 'smooth'
+  });
+}
 
 </script>
 </body>
-  </html>
+                  </html>
